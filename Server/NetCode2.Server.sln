@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{8F63A276-CF31-4B9E-B36D-51A1DEE3272D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCode2.Server.Console", "NetCode2.Server.Console\NetCode2.Server.Console.csproj", "{E7F19BA4-340D-4060-BCD1-37DB3149F500}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E7F19BA4-340D-4060-BCD1-37DB3149F500} = {8F63A276-CF31-4B9E-B36D-51A1DEE3272D}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7F19BA4-340D-4060-BCD1-37DB3149F500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7F19BA4-340D-4060-BCD1-37DB3149F500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7F19BA4-340D-4060-BCD1-37DB3149F500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7F19BA4-340D-4060-BCD1-37DB3149F500}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
