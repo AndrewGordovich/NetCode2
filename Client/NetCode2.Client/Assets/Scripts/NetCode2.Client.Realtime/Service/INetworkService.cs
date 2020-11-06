@@ -1,6 +1,10 @@
-﻿namespace NetCode2.Client.Realtime.Service
+﻿using NetCode2.Common.Realtime.Data.Commands;
+
+namespace NetCode2.Client.Realtime.Service
 {
-    internal interface INetworkService
+    public interface INetworkService
     {
+        void Send();
+        void Send(SimulationCommand simulationCommand);
     }
 }

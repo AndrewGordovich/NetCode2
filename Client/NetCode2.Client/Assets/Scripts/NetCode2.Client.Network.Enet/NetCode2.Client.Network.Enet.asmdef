@@ -1,0 +1,16 @@
+{
+    "name": "NetCode2.Client.Network.Enet",
+    "references": [
+        "GUID:27043d723d6b0ee4486d7881d227e909",
+        "GUID:41d1f6d1f30a11e4b80626dad95e09a9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

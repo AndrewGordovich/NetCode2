@@ -5,7 +5,5 @@
         ConnectionState ConnectionState { get; }
 
         void Connect();
-
-        void Disconnect();
     }
 }

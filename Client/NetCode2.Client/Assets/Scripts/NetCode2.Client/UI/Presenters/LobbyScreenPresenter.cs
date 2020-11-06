@@ -2,6 +2,7 @@
 using NetCode2.Client.Core;
 using NetCode2.Client.UI.Core.Contracts;
 using NetCode2.Client.UI.Views;
+using NetCode2.Common.Realtime.Data.Commands;
 using UniRx;
 
 namespace NetCode2.Client.UI.Presenters
@@ -47,7 +48,9 @@ namespace NetCode2.Client.UI.Presenters
 
         private void InputEditEndedEventHandler(string input)
         {
-
+            Byte result = Byte.Parse(input);
+            var byteCommand = new ByteCommand(result);
+            main.AddCommand(byteCommand);
         }
     }
 }

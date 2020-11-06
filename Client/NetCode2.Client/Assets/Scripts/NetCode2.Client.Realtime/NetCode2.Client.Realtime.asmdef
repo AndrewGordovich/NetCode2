@@ -1,0 +1,15 @@
+{
+    "name": "NetCode2.Client.Realtime",
+    "references": [
+        "GUID:cc4f2fcf6ad8aa7449d11f265de7049a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

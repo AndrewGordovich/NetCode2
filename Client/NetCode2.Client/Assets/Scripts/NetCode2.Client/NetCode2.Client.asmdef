@@ -1,0 +1,18 @@
+{
+    "name": "NetCode2.Client",
+    "references": [
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:d8e77f5b8da035540807a74e25dfe171",
+        "GUID:27043d723d6b0ee4486d7881d227e909",
+        "GUID:cc4f2fcf6ad8aa7449d11f265de7049a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

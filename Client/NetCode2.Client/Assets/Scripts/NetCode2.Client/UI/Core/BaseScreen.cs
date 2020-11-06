@@ -8,6 +8,11 @@ namespace NetCode2.Client.UI.Core
     {
         private readonly IList<IDisposablePresenter> disposablePresenters = new List<IDisposablePresenter>();
 
+        private void OnDestroy()
+        {
+            DisposePresenters();
+        }
+
         public void Close()
         {
             Destroy(gameObject);
@@ -16,11 +21,6 @@ namespace NetCode2.Client.UI.Core
         protected void AddDisposablePresenter(IDisposablePresenter disposablePresenter)
         {
             disposablePresenters.Add(disposablePresenter);
-        }
-
-        private void OnDestroy()
-        {
-            DisposePresenters();
         }
 
         private void DisposePresenters()
