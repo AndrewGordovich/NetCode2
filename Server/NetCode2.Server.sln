@@ -4,6 +4,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{8F63A2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCode2.Server.Console", "NetCode2.Server.Console\NetCode2.Server.Console.csproj", "{E7F19BA4-340D-4060-BCD1-37DB3149F500}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{749626B2-D90F-4150-A22B-30EFF778DA11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCode2.Common.Realtime", "..\Client\NetCode2.Client\Assets\Scripts\NetCode2.Common.Realtime\NetCode2.Common.Realtime.csproj", "{0E8E8DB9-0B6E-4BA3-BDA8-C2F90DBFD911}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -11,11 +15,16 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E7F19BA4-340D-4060-BCD1-37DB3149F500} = {8F63A276-CF31-4B9E-B36D-51A1DEE3272D}
+		{0E8E8DB9-0B6E-4BA3-BDA8-C2F90DBFD911} = {749626B2-D90F-4150-A22B-30EFF778DA11}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E7F19BA4-340D-4060-BCD1-37DB3149F500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E7F19BA4-340D-4060-BCD1-37DB3149F500}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7F19BA4-340D-4060-BCD1-37DB3149F500}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7F19BA4-340D-4060-BCD1-37DB3149F500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E8E8DB9-0B6E-4BA3-BDA8-C2F90DBFD911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E8E8DB9-0B6E-4BA3-BDA8-C2F90DBFD911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E8E8DB9-0B6E-4BA3-BDA8-C2F90DBFD911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E8E8DB9-0B6E-4BA3-BDA8-C2F90DBFD911}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
