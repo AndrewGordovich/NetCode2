@@ -1,7 +1,7 @@
 {
     "name": "NetCode2.Client.Realtime",
     "references": [
-        "NewAssembly"
+        "NetCode2.Common.Realtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
