@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0-rc.2.20475.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NetCode2.Server.Realtime.Contracts\NetCode2.Server.Realtime.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>

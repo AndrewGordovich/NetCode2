@@ -5,4 +5,12 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\NetCode2.Server.Realtime\NetCode2.Server.Realtime.Application\NetCode2.Server.Realtime.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0-rc.2.20475.5" />
+    </ItemGroup>
+
 </Project>

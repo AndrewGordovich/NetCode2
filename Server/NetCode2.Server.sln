@@ -8,6 +8,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{749626
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCode2.Common.Realtime", "..\Client\NetCode2.Client\Assets\Scripts\NetCode2.Common.Realtime\NetCode2.Common.Realtime.csproj", "{4548858B-4D10-4138-87DA-C7B23C1B655A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetCode2.Server.Realtime", "NetCode2.Server.Realtime", "{5D228E0A-4806-494F-815B-A52D3C626239}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCode2.Server.Realtime.Application", "NetCode2.Server.Realtime\NetCode2.Server.Realtime.Application\NetCode2.Server.Realtime.Application.csproj", "{EBCD85CA-FE9B-4B67-A280-FEA5006C2005}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCode2.Server.Realtime.Contracts", "NetCode2.Server.Realtime\NetCode2.Server.Realtime.Contracts\NetCode2.Server.Realtime.Contracts.csproj", "{C224411A-C65C-47ED-82DA-4837A52E1EB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCode2.Server.Realtime.Network.ENet", "NetCode2.Server.Realtime\NetCode2.Server.Realtime.Network.ENet\NetCode2.Server.Realtime.Network.ENet.csproj", "{9F275CB9-331C-4A4D-95B7-574BD825BF3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,6 +24,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E7F19BA4-340D-4060-BCD1-37DB3149F500} = {8F63A276-CF31-4B9E-B36D-51A1DEE3272D}
 		{4548858B-4D10-4138-87DA-C7B23C1B655A} = {749626B2-D90F-4150-A22B-30EFF778DA11}
+		{5D228E0A-4806-494F-815B-A52D3C626239} = {8F63A276-CF31-4B9E-B36D-51A1DEE3272D}
+		{EBCD85CA-FE9B-4B67-A280-FEA5006C2005} = {5D228E0A-4806-494F-815B-A52D3C626239}
+		{C224411A-C65C-47ED-82DA-4837A52E1EB3} = {5D228E0A-4806-494F-815B-A52D3C626239}
+		{9F275CB9-331C-4A4D-95B7-574BD825BF3E} = {5D228E0A-4806-494F-815B-A52D3C626239}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E7F19BA4-340D-4060-BCD1-37DB3149F500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -26,5 +38,17 @@ Global
 		{4548858B-4D10-4138-87DA-C7B23C1B655A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4548858B-4D10-4138-87DA-C7B23C1B655A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4548858B-4D10-4138-87DA-C7B23C1B655A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBCD85CA-FE9B-4B67-A280-FEA5006C2005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBCD85CA-FE9B-4B67-A280-FEA5006C2005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBCD85CA-FE9B-4B67-A280-FEA5006C2005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBCD85CA-FE9B-4B67-A280-FEA5006C2005}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C224411A-C65C-47ED-82DA-4837A52E1EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C224411A-C65C-47ED-82DA-4837A52E1EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C224411A-C65C-47ED-82DA-4837A52E1EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C224411A-C65C-47ED-82DA-4837A52E1EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F275CB9-331C-4A4D-95B7-574BD825BF3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F275CB9-331C-4A4D-95B7-574BD825BF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F275CB9-331C-4A4D-95B7-574BD825BF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F275CB9-331C-4A4D-95B7-574BD825BF3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
