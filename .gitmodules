@@ -1,3 +1,0 @@
-[submodule "Client/NetCode2.Client/Assets/Scripts/ENet-CSharp"]
-	path = Client/NetCode2.Client/Assets/Scripts/ENet-CSharp
-	url = git@github.com:AndrewGordovich/ENet-CSharp.git
