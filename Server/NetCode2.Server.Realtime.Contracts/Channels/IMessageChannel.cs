@@ -7,6 +7,8 @@ namespace NetCode2.Server.Realtime.Contracts.Channels
     {
         void StartProcessing(Action<TMessage> processor, CancellationToken cancellationToken = default);
 
-        void StipProcessing();
+        void StopProcessing();
+
+        bool TryWrite(in TMessage message);
     }
 }

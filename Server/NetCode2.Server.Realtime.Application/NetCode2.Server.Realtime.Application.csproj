@@ -11,6 +11,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\NetCode2.Server.Realtime.Contracts\NetCode2.Server.Realtime.Contracts.csproj" />
+      <ProjectReference Include="..\NetCode2.Server.Realtime.Network.ENet\NetCode2.Server.Realtime.Network.ENet.csproj" />
+      <ProjectReference Include="..\NetCode2.Server.Realtime.Runtime\NetCode2.Server.Realtime.Runtime.csproj" />
     </ItemGroup>
 
 </Project>

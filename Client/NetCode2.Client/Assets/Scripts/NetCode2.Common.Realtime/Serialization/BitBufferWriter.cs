@@ -31,7 +31,7 @@ namespace NetCode2.Common.Realtime.Serialization
 
         private void ToSpan(Span<byte> data)
         {
-            Add(1,1);
+            Add(1, 1);
             var bitsPassed = BitsWritten;
             Align();
 
@@ -44,16 +44,16 @@ namespace NetCode2.Common.Realtime.Serialization
                 UInt32 chunk = Chunks[i];
                 // TODO: optimize by copying 4 byte in single call via Unsafe
                 if (dataIdx < length)
-                    data[dataIdx] = (byte)(chunk);
+                    data[dataIdx] = (byte) (chunk);
 
                 if (dataIdx + 1 < length)
-                    data[dataIdx + 1] = (byte)(chunk >> 8);
+                    data[dataIdx + 1] = (byte) (chunk >> 8);
 
                 if (dataIdx + 2 < length)
-                    data[dataIdx + 2] = (byte)(chunk >> 16);
+                    data[dataIdx + 2] = (byte) (chunk >> 16);
 
                 if (dataIdx + 3 < length)
-                    data[dataIdx + 3] = (byte)(chunk >> 24);
+                    data[dataIdx + 3] = (byte) (chunk >> 24);
             }
         }
     }

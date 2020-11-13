@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\NetCode2.Server.Realtime\NetCode2.Server.Realtime.Application\NetCode2.Server.Realtime.Application.csproj" />
+      <ProjectReference Include="..\NetCode2.Server.Realtime.Application\NetCode2.Server.Realtime.Application.csproj" />
     </ItemGroup>
 
     <ItemGroup>
