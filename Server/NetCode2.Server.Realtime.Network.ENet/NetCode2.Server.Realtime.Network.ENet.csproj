@@ -13,6 +13,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Client\NetCode2.Client\Assets\Scripts\ENet-CSharp\Source\Managed\ENet-CSharp.csproj" />
       <ProjectReference Include="..\NetCode2.Server.Realtime.Contracts\NetCode2.Server.Realtime.Contracts.csproj" />
+      <ProjectReference Include="..\NetCode2.Server.Realtime.RoomEngine\NetCode2.Server.Realtime.RoomEngine.csproj" />
     </ItemGroup>
 
     <ItemGroup>

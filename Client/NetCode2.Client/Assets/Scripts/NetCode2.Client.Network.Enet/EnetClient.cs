@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ENet;
 using NetCode2.Client.Realtime.Connection;
 using NetCode2.Client.Realtime.Service;
@@ -43,10 +44,17 @@ namespace NetCode2.Client.Network.Enet
 
         public void Connect()
         {
-            if (ConnectionState == ConnectionState.Disconnected)
+            try
             {
-                peer = client.Connect(address, ChannelsCount);
-                ConnectionState = ConnectionState.Connecting;
+                if (ConnectionState == ConnectionState.Disconnected)
+                {
+                    peer = client.Connect(address, ChannelsCount);
+                    ConnectionState = ConnectionState.Connecting;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
             }
         }
 

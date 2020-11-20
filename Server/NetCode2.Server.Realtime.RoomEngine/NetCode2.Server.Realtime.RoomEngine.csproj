@@ -5,13 +5,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Client\NetCode2.Client\Assets\Scripts\NetCode2.Common.Realtime\NetCode2.Common.Realtime.csproj" />
       <ProjectReference Include="..\NetCode2.Server.Realtime.Contracts\NetCode2.Server.Realtime.Contracts.csproj" />
-      <ProjectReference Include="..\NetCode2.Server.Realtime.RoomEngine\NetCode2.Server.Realtime.RoomEngine.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0-rc.2.20475.5" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0-rc.2.20475.5" />
     </ItemGroup>
 

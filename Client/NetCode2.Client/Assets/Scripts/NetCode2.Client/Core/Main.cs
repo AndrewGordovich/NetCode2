@@ -33,8 +33,8 @@ namespace NetCode2.Client.Core
         {
             IGamePlayConnection connection = new EnetClient(new ENetClientSettings
             {
-                //ServerHostName = "127.0.0.1",
-                ServerHostName = "18.185.139.165",
+                ServerHostName = "127.0.0.1",
+                //ServerHostName = "18.195.68.198",
                 ServerPort = 40002
             });
 

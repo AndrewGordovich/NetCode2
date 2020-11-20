@@ -5,11 +5,20 @@ using ENet;
 using Microsoft.Extensions.Logging;
 using NetCode2.Server.Realtime.Contracts;
 using NetCode2.Server.Realtime.Contracts.Channels;
+using NetCode2.Server.Realtime.Contracts.Messages;
+using NetCode2.Server.Realtime.Contracts.Storages;
 
 namespace NetCode2.Server.Realtime.Network.ENet
 {
     public class ENetServer : INetworkServer
     {
+        public const byte IngoingUnrelibleChannelId = 0;
+        public const byte IngoingRelibleChannelId = 2;
+        public const byte OutgoingUnrelibleChannelId = 1;
+        public const byte OutgoingRelibleChannelId = 3;
+        public const byte ChannelsCount = 4;
+
+        private readonly IPeerStorage peerStorage;
         private readonly IDeserializationChannel<ENetNetworkMessage> deserializationChannel;
         private readonly ILogger<ENetServer> logger;
 
@@ -17,9 +26,11 @@ namespace NetCode2.Server.Realtime.Network.ENet
         private CancellationTokenSource cancellationTokenSource;
 
         public ENetServer(
+            IPeerStorage peerStorage,
             IDeserializationChannel<ENetNetworkMessage> deserializationChannel,
             ILogger<ENetServer> logger)
         {
+            this.peerStorage = peerStorage;
             this.deserializationChannel = deserializationChannel;
             this.logger = logger;
         }
@@ -66,21 +77,35 @@ namespace NetCode2.Server.Realtime.Network.ENet
                 case EventType.Connect:
                     logger.LogInformation("Client connected - ID: {peerId}, IP: {peerIP}", networkEvent.Peer.ID, networkEvent.Peer.IP);
                     Console.WriteLine("Connect Event received from client - ID: " + networkEvent.Peer.ID + ", IP: " + networkEvent.Peer.IP);
+
+                    peerStorage.Add(networkEvent.Peer.ID, new ENetPeerWrapper(networkEvent.Peer));
+                    var connectMessage = new ENetNetworkMessage(networkEvent.Peer.ID, NetworkMessageType.Connect);
+                    WriteToDeserializationChannel(in connectMessage);
                     break;
 
                 case EventType.Disconnect:
                     logger.LogInformation("Client disconnected - ID: {peerId}, IP: {peerIP}", networkEvent.Peer.ID, networkEvent.Peer.IP);
                     Console.WriteLine("Disconnect Event received from client - ID: " + networkEvent.Peer.ID + ", IP: " + networkEvent.Peer.IP);
+
+                    peerStorage.Remove(networkEvent.Peer.ID);
+
+                    var disconnectMessage = new ENetNetworkMessage(networkEvent.Peer.ID, NetworkMessageType.Disconnect);
+                    WriteToDeserializationChannel(in disconnectMessage);
                     break;
 
                 case EventType.Timeout:
                     logger.LogInformation("Client timeout - ID: {peerId}, IP: {peerIP}", networkEvent.Peer.ID, networkEvent.Peer.IP);
                     Console.WriteLine("Client timeout - ID: " + networkEvent.Peer.ID + ", IP: " + networkEvent.Peer.IP);
+
+                    peerStorage.Remove(networkEvent.Peer.ID);
+                    var timeoutMessage = new ENetNetworkMessage(networkEvent.Peer.ID, NetworkMessageType.Timeout);
+                    WriteToDeserializationChannel(timeoutMessage);
                     break;
 
                 case EventType.Receive:
                     Console.WriteLine("Packet received from - ID: " + networkEvent.Peer.ID + ", IP: " + networkEvent.Peer.IP + ", Channel ID: " + networkEvent.ChannelID + ", Data length: " + networkEvent.Packet.Length);
-                    var receivedMessage = new ENetNetworkMessage(networkEvent.Packet, networkEvent.Packet.Length);
+
+                    var receivedMessage = new ENetNetworkMessage(networkEvent.Peer.ID, networkEvent.Packet, networkEvent.Packet.Length);
                     WriteToDeserializationChannel(in receivedMessage);
                     break;
 

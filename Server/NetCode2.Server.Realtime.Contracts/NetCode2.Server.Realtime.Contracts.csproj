@@ -9,4 +9,8 @@
       <PackageReference Include="System.Threading.Channels" Version="5.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\NetCode2.Common\NetCode2.Common.csproj" />
+    </ItemGroup>
+
 </Project>

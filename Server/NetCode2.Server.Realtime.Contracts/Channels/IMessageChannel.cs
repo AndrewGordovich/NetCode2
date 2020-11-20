@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace NetCode2.Server.Realtime.Contracts.Channels
 {
@@ -9,6 +10,8 @@ namespace NetCode2.Server.Realtime.Contracts.Channels
 
         void StopProcessing();
 
+        ValueTask WriteAsync(TMessage message, CancellationToken cancellationToken = default);
+        
         bool TryWrite(in TMessage message);
     }
 }

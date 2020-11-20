@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Channels;
+using System.Threading.Tasks;
 using NetCode2.Server.Realtime.Contracts.Channels;
 
 namespace NetCode2.Server.Realtime.Runtime.Channels
@@ -25,6 +26,11 @@ namespace NetCode2.Server.Realtime.Runtime.Channels
 
         public void StopProcessing() =>
             ChannelHandler.StopProcessingMessages(Channel);
+
+        public async ValueTask WriteAsync(TMessage message, CancellationToken cancellationToken = default)
+        {
+            await Channel.Writer.WriteAsync(message, cancellationToken);
+        }
 
         public bool TryWrite(in TMessage message)
         {
