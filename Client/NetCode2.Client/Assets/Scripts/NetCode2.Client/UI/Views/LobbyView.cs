@@ -12,12 +12,7 @@ namespace NetCode2.Client.UI.Views
         [SerializeField]
         private Text debugText;
 
-        [SerializeField]
-        private InputField inputField;
-
         public event Action ConnectButtonClickedEvent;
-
-        public event Action<string> InputEditEndedEvent;
 
         public string DebugText
         {
@@ -28,13 +23,11 @@ namespace NetCode2.Client.UI.Views
         private void OnEnable()
         {
             connectButton.onClick.AddListener(()=> ConnectButtonClickedEvent?.Invoke());
-            inputField.onEndEdit.AddListener((text)=> InputEditEndedEvent?.Invoke(text));
         }
 
         private void OnDisable()
         {
             connectButton.onClick.RemoveAllListeners();
-            inputField.onEndEdit.RemoveAllListeners();
         }
     }
 }

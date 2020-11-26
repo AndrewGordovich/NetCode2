@@ -5,7 +5,7 @@ namespace NetCode2.Common.Realtime.Serialization
 {
     public partial class BitBufferReader : BitBuffer
     {
-        public BitBufferReader(int capacity)
+        public BitBufferReader(int capacity = DefaultCapacity)
         {
             Chunks = new uint[capacity];
             Reset();

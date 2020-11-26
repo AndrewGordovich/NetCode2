@@ -22,11 +22,6 @@ namespace NetCode2.Client.UI.Presenters
                     h => lobbyView.ConnectButtonClickedEvent -= h)
                 .Subscribe(onNext => ConnectButtonEventHandler())
                 .AddTo(subscriptions);
-
-            Observable.FromEvent<string>(h => lobbyView.InputEditEndedEvent += h,
-                    h => lobbyView.InputEditEndedEvent -= h)
-                .Subscribe(input => InputEditEndedEventHandler(input))
-                .AddTo(subscriptions);
         }
 
         public void Dispose()
@@ -38,19 +33,12 @@ namespace NetCode2.Client.UI.Presenters
         {
             try
             {
-                main.ConnectToRoom();
+                main.StartMatch();
             }
             catch (Exception e)
             {
                 lobbyView.DebugText = $"{e}, \n {e.Message}, \n{e.StackTrace}";
             }
-        }
-
-        private void InputEditEndedEventHandler(string input)
-        {
-            Byte result = Byte.Parse(input);
-            var byteCommand = new ByteCommand(result);
-            main.AddCommand(byteCommand);
         }
     }
 }

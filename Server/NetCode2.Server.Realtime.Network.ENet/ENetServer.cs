@@ -20,6 +20,7 @@ namespace NetCode2.Server.Realtime.Network.ENet
 
         private readonly IPeerStorage peerStorage;
         private readonly IDeserializationChannel<ENetNetworkMessage> deserializationChannel;
+        private readonly INetworkServerChannel networkServerChannel;
         private readonly ILogger<ENetServer> logger;
 
         private Host server;
@@ -28,10 +29,12 @@ namespace NetCode2.Server.Realtime.Network.ENet
         public ENetServer(
             IPeerStorage peerStorage,
             IDeserializationChannel<ENetNetworkMessage> deserializationChannel,
+            INetworkServerChannel networkServerChannel,
             ILogger<ENetServer> logger)
         {
             this.peerStorage = peerStorage;
             this.deserializationChannel = deserializationChannel;
+            this.networkServerChannel = networkServerChannel;
             this.logger = logger;
         }
 
@@ -56,6 +59,7 @@ namespace NetCode2.Server.Realtime.Network.ENet
             {
                 while (!cancellationToken.IsCancellationRequested)
                 {
+                    ReadAllFromServerChannel();
                     server.Service(15, out Event netEvent);
 
                     Process(ref netEvent);
@@ -64,6 +68,33 @@ namespace NetCode2.Server.Realtime.Network.ENet
             catch(Exception e)
             {
                 logger.LogError(e.Message);
+            }
+        }
+
+        private void ReadAllFromServerChannel()
+        {
+            while(networkServerChannel.TryRead(out var message))
+            {
+                CreateAndSendPacket(in message);
+            }
+        }
+
+        private void CreateAndSendPacket(in NetworkMessage message)
+        {
+            if (peerStorage.TryGetPeer(message.PeerId, out var peer))
+            {
+                if (message.IsReliable)
+                {
+                    peer.SendReliable(message.Data, message.Length);
+                }
+                else
+                {
+                    peer.SendUnreliable(message.Data, message.Length);
+                }
+            }
+            else
+            {
+                // do nothing
             }
         }
 

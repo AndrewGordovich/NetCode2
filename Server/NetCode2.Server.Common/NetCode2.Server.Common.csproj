@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\NetCode2.Server.Realtime.Contracts\NetCode2.Server.Realtime.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Client\NetCode2.Client\Assets\Scripts\NetCode2.Common.Realtime\NetCode2.Common.Realtime.csproj" />
+      <ProjectReference Include="..\NetCode2.Server.Common\NetCode2.Server.Common.csproj" />
       <ProjectReference Include="..\NetCode2.Server.Realtime.Contracts\NetCode2.Server.Realtime.Contracts.csproj" />
       <ProjectReference Include="..\NetCode2.Server.Realtime.RoomEngine\NetCode2.Server.Realtime.RoomEngine.csproj" />
     </ItemGroup>

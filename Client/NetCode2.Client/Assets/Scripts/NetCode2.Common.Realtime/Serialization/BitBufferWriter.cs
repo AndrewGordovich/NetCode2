@@ -17,7 +17,7 @@ namespace NetCode2.Common.Realtime.Serialization
             }
         }
 
-        public BitBufferWriter(int capacity)
+        public BitBufferWriter(int capacity = DefaultCapacity)
         {
             Chunks = new uint[capacity];
         }

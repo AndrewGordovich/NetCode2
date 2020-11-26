@@ -2,9 +2,11 @@
 {
     public partial class BitOutStream
     {
+        private const int DefaultCapacity = 375;
+
         private readonly BitBufferWriter bitBuffer;
 
-        public BitOutStream(int capacity)
+        public BitOutStream(int capacity = DefaultCapacity)
         {
             bitBuffer = new BitBufferWriter(capacity);
         }

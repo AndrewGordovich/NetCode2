@@ -10,6 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Client\NetCode2.Client\Assets\Scripts\NetCode2.Common\NetCode2.Common.csproj" />
       <ProjectReference Include="..\NetCode2.Common\NetCode2.Common.csproj" />
     </ItemGroup>
 

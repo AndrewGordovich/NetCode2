@@ -5,10 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Client\NetCode2.Client\Assets\Scripts\NetCode2.Common\NetCode2.Common.csproj" />
       <ProjectReference Include="..\NetCode2.Server.Realtime.Contracts\NetCode2.Server.Realtime.Contracts.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Collections.Pooled" Version="1.0.82" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0-rc.2.20475.5" />
     </ItemGroup>
 

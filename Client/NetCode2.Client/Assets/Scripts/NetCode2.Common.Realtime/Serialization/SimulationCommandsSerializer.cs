@@ -12,8 +12,6 @@ namespace NetCode2.Common.Realtime.Serialization
 
         public byte[] Serialize(SimulationCommand command)
         {
-            ByteCommand byteCommand = (ByteCommand) command.GameCommand;
-
             outStream.WriteByte(155);
             outStream.WriteShort(60000);
             outStream.WriteShort(60000);

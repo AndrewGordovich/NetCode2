@@ -1,35 +1,45 @@
 ﻿using System;
-using System.Data;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Collections.Pooled;
 using Microsoft.Extensions.Logging;
+using NetCode2.Common;
+using NetCode2.Server.Realtime.Contracts;
 using NetCode2.Server.Realtime.Contracts.Channels;
 using NetCode2.Server.Realtime.Contracts.Messages;
+using NetCode2.Server.Realtime.RoomEngine.Channels.PlayerMessages;
 using NetCode2.Server.Realtime.RoomEngine.Channels.RoomMessages;
 
 namespace NetCode2.Server.Realtime.RoomEngine.Gameplay
 {
     public sealed class RoomEngine
     {
+        private readonly RoomId roomId;
+
         private readonly ILogger logger;
         private readonly IRoomChannel roomChannel;
 
         private readonly CancellationTokenSource gameLoopCancellationTokenSource;
         private readonly CancellationTokenSource processingCancellationTokenSource;
+        private readonly PooledList<IRoomServiceMessage> serviceMessages;
 
-        private RoomPlayer roomPlayer;
+        private readonly IRoomPlayerDictionary players;
 
         public RoomEngine(
+            RoomId roomId,
             IChannelFactory channelFactory,
             ILogger logger)
         {
+            this.roomId = roomId;
             this.logger = logger;
 
             roomChannel = channelFactory.CreateRoomChannel();
 
             gameLoopCancellationTokenSource = new CancellationTokenSource();
             processingCancellationTokenSource = new CancellationTokenSource();
+            serviceMessages = new PooledList<IRoomServiceMessage>();
+            players = new RoomPlayerDictionary();
         }
 
         public void StartGame()
@@ -42,6 +52,8 @@ namespace NetCode2.Server.Realtime.RoomEngine.Gameplay
 
             logger.LogInformation("Game started in room");
         }
+
+        public ValueTask SendMessage(IRoomMessage message) => roomChannel.WriteAsync(message, processingCancellationTokenSource.Token);
 
         private async Task RunGameLoop(CancellationToken cancellationToken)
         {
@@ -84,12 +96,19 @@ namespace NetCode2.Server.Realtime.RoomEngine.Gameplay
                 case StepMessage _:
                     Step();
                     break;
+                case IRoomServiceMessage m:
+                    serviceMessages.Add(m);
+                    break;
+
+                default:
+                    throw new NotImplementedException($"The message of type {message.GetType()} is not supported");
             }
         }
 
         private void Step()
         {
             Console.WriteLine("Step");
+            Update();
 
             /*while (!gameLoopCancellationTokenSource.IsCancellationRequested)
             {
@@ -99,7 +118,57 @@ namespace NetCode2.Server.Realtime.RoomEngine.Gameplay
 
         private void Update()
         {
+            ProcessServiceMessages();
             BroadcastSimulationState();
+        }
+
+        private void ProcessServiceMessages()
+        {
+            try
+            {
+                foreach (var serviceMessage in serviceMessages)
+                {
+                    ProcessRoomServiceMessage(serviceMessage);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                serviceMessages.Clear();
+            }
+        }
+
+        private void ProcessRoomServiceMessage(IRoomServiceMessage message)
+        {
+            switch(message)
+            {
+                case JoinRoomMessage m:
+                    if (players.TryGetValue(m.Client.ClientId, out RoomPlayer player))
+                    {
+                        //Reconnect
+                    }
+                    else
+                    {
+                        player = AddPlayer(m.Client);
+                    }
+
+                    player.SendMessage(new GameJoinedMessage(m.Client.ClientId));
+
+                    break;
+                default:
+                    throw new NotImplementedException($"The message of type {message.GetType()} is not supported");
+            }
+        }
+
+        private RoomPlayer AddPlayer(IClient client)
+        {
+            var player = new RoomPlayer(client);
+            players.Add(player);
+
+            return player;
         }
 
         private void BroadcastSimulationState()

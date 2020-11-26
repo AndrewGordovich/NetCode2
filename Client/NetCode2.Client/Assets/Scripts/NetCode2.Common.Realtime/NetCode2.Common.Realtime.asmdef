@@ -1,3 +1,15 @@
-﻿{
-	"name": "NetCode2.Common.Realtime"
+{
+    "name": "NetCode2.Common.Realtime",
+    "references": [
+        "GUID:6aa4be47a2b50394f80e842876e9fa90"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

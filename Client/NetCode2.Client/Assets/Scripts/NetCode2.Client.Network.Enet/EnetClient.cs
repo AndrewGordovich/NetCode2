@@ -58,6 +58,16 @@ namespace NetCode2.Client.Network.Enet
             }
         }
 
+        public void ServiceAll()
+        {
+            bool isServicing = true;
+            while (isServicing)
+            {
+                client.Service(0, out var @event);
+                isServicing = Service(ref @event);
+            }
+        }
+
         public void ServiceOnce()
         {
             client.Service(0, out var @event);
@@ -67,6 +77,16 @@ namespace NetCode2.Client.Network.Enet
         public void SendReliable(byte[] data, int length)
         {
             Send(data, length, OutgoingRelibleChannelId, PacketFlags.Reliable);
+        }
+
+        public bool HasData()
+        {
+            return incomingQueue.Count > 0;
+        }
+
+        public INetworkData GetData()
+        {
+            return incomingQueue.Dequeue();
         }
 
         private void Send(byte[] data, int length, byte channelId, PacketFlags flags)
@@ -92,9 +112,8 @@ namespace NetCode2.Client.Network.Enet
                     HandleTimeout();
                     return true;
                 case EventType.Receive:
-                    Debug.Log(
-                        $"Packet received from server - Channel ID: {@event.ChannelID}, Data Length: {@event.Packet.Length}");
-                    @event.Packet.Dispose();
+                    Debug.Log($"Packet received from server - Channel ID: {@event.ChannelID}, Data Length: {@event.Packet.Length}");
+                    incomingQueue.Enqueue(new ENetNetworkData(@event.Packet, @event.Packet.Length));
                     return true;
             }
 

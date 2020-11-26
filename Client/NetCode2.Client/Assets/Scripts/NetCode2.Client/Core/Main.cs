@@ -1,10 +1,6 @@
-﻿using NetCode2.Client.Network.Enet;
-using NetCode2.Client.Realtime.Connection;
-using NetCode2.Client.Realtime.Service;
-using NetCode2.Client.Realtime.Simulation;
+﻿using NetCode2.Client.Networking;
 using NetCode2.Client.UI.Core;
 using NetCode2.Client.UI.Screens;
-using NetCode2.Common.Realtime.Data.Commands;
 using UnityEngine;
 
 namespace NetCode2.Client.Core
@@ -12,11 +8,10 @@ namespace NetCode2.Client.Core
     public class Main : MonoBehaviour
     {
         [SerializeField]
-        private ScreensController screensController;
+        private RealtimeRunBehavior runBehavior;
 
-        private INetworkService networkService;
-        
-        public IClientSimulation ClientSimulation { get; private set; }
+        [SerializeField]
+        private ScreensController screensController;
 
         private void Start()
         {
@@ -24,26 +19,9 @@ namespace NetCode2.Client.Core
             lobbyScreen.Setup(this);
         }
 
-        private void Update()
+        public void StartMatch()
         {
-            networkService?.Send();
+            runBehavior.Connect();
         }
-
-        public void ConnectToRoom()
-        {
-            IGamePlayConnection connection = new EnetClient(new ENetClientSettings
-            {
-                ServerHostName = "127.0.0.1",
-                //ServerHostName = "18.195.68.198",
-                ServerPort = 40002
-            });
-
-            networkService = new NetworkService(connection);
-            ClientSimulation = new ClientSimulation(networkService);
-
-            connection.Connect();
-        }
-
-        public void AddCommand(IGameCommand gameCommand) => ClientSimulation.AddCommand(gameCommand);
     }
 }

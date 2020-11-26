@@ -4,7 +4,7 @@ namespace NetCode2.Common.Realtime.Serialization
 {
     public abstract class BitBuffer
     {
-        public const int defaultCapacity = 375;
+        public const int DefaultCapacity = 375;
 
         protected Int32 ScratchUsedBits { get; set; }
         protected UInt64 Scratch { get; set; }
